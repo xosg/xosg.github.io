@@ -381,8 +381,7 @@ h1 {
 }
 
 .personality-portrait {
-  width: 150px;
-  height: 150px;
+  height: 191px;
 }
 
 .personality-titles {
@@ -541,14 +540,13 @@ h1 {
   .personality-info {
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
     width: 100%;
     justify-content: center;
   }
 
   .personality-portrait {
-    width: 100px;
-    height: 100px;
+    height: 84px;
   }
 
   .personality-titles {
