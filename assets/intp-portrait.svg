@@ -1,0 +1,40 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="55" fill="rgba(100, 150, 200, 0.1)" stroke="rgba(100, 150, 200, 0.3)" stroke-width="2"/>
+  
+  <!-- Head -->
+  <ellipse cx="60" cy="45" rx="25" ry="30" fill="#f4c2a1"/>
+  
+  <!-- Hair (messy, creative) -->
+  <path d="M 35 25 Q 60 10 85 25 Q 80 15 75 20 Q 65 5 55 15 Q 45 5 40 20" fill="#8B4513"/>
+  
+  <!-- Eyes (thoughtful, slightly introverted) -->
+  <circle cx="52" cy="38" r="3" fill="#333"/>
+  <circle cx="68" cy="38" r="3" fill="#333"/>
+  
+  <!-- Glasses (intellectual look) -->
+  <g stroke="#666" stroke-width="1.5" fill="none">
+    <circle cx="52" cy="38" r="8"/>
+    <circle cx="68" cy="38" r="8"/>
+    <line x1="60" y1="38" x2="60" y2="38"/>
+  </g>
+  
+  <!-- Nose -->
+  <path d="M 60 45 L 58 50 L 62 50 Z" fill="#e6a882"/>
+  
+  <!-- Mouth (slight smile, contemplative) -->
+  <path d="M 55 55 Q 60 58 65 55" stroke="#d4916b" stroke-width="2" fill="none"/>
+  
+  <!-- Body/shirt -->
+  <rect x="40" y="75" width="40" height="35" rx="5" fill="#4a5568"/>
+  
+  <!-- Thought bubble (representing analytical thinking) -->
+  <circle cx="85" cy="25" r="12" fill="rgba(255, 255, 255, 0.1)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+  
+  <!-- Question mark in thought bubble -->
+  <text x="85" y="30" text-anchor="middle" fill="rgba(255, 255, 255, 0.7)" font-size="14" font-weight="bold">?</text>
+  
+  <!-- Small thought bubbles leading to main bubble -->
+  <circle cx="75" cy="35" r="3" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5"/>
+  <circle cx="70" cy="40" r="2" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.2)" stroke-width="0.5"/>
+</svg>

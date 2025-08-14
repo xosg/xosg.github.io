@@ -300,8 +300,8 @@
     const height = box.height;
     const barHeight = 6;
     const spacing = height / (data.length + 0.5); // Increased spacing between bars
-    const barStart = 120; // Reduced left margin even more
-    const barWidth = width - barStart - 120; // Wider bars
+    const barStart = 120; // Left margin
+    const barWidth = width - barStart - 120; // Bar width
 
     // Icons for each trait
     const icons = {
@@ -311,15 +311,6 @@
       'Judging': '🔍',
       'Assertive': '🌀'
     };
-
-    // Add title
-    const title = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    title.textContent = 'Personality MBTI: INTP-T (Logician)';
-    title.setAttribute('x', '20');
-    title.setAttribute('y', '35');
-    title.setAttribute('fill', 'rgba(255,255,255,0.9)');
-    title.setAttribute('font-size', '24');
-    svg.appendChild(title);
 
 
 
@@ -353,7 +344,7 @@
       // Left label
       const leftLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       leftLabel.textContent = trait.label;
-      leftLabel.setAttribute('x', barStart - 10);
+      leftLabel.setAttribute('x', barStart - 20);
       leftLabel.setAttribute('y', y);
       leftLabel.setAttribute('fill', 'rgba(255,255,255,0.9)');
       leftLabel.setAttribute('font-size', '16');
@@ -385,12 +376,12 @@
       // Right label
       const rightLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
       rightLabel.textContent = trait.pair;
-      rightLabel.setAttribute('x', width - 20);
+      rightLabel.setAttribute('x', width - 100);
       rightLabel.setAttribute('y', y);
       rightLabel.setAttribute('fill', 'rgba(255,255,255,0.9)');
       rightLabel.setAttribute('font-size', '16');
       rightLabel.setAttribute('dominant-baseline', 'middle');
-      rightLabel.setAttribute('text-anchor', 'end');
+      rightLabel.setAttribute('text-anchor', 'start');
       svg.appendChild(rightLabel);
 
       // if (percentage > 50) leftLabel.setAttribute('fill', trait.color)

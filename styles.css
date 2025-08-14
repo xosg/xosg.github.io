@@ -187,8 +187,92 @@ h1 { margin: 16px 0 8px; letter-spacing: 0.3px; }
 .legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; background: var(--dot); margin-right: 6px; box-shadow: 0 0 0 3px rgba(255,255,255,0.06) inset; }
 
 .personality-wrap { display: grid; gap: 24px; padding: 0 20px; }
+
+.personality-content { 
+  display: flex; 
+  align-items: center; 
+  gap: 3rem; 
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.personality-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.personality-portrait { 
+  width: 150px; 
+  height: 150px; 
+}
+
+.personality-titles {
+  text-align: center;
+}
+
+.personality-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.personality-subtitle {
+  margin: 0.5rem 0 0 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.personality-chart-container {
+  flex: 1;
+  min-width: 400px;
+}
+
 .personality-chart { width: 100%; max-width: 900px; justify-self: center; }
 .personality-description { text-align: center; color: var(--muted); max-width: 600px; margin: 0 auto; }
+
+/* Responsive layout for narrow screens */
+@media (max-width: 768px) {
+  .personality-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .personality-info {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .personality-portrait {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .personality-titles {
+    text-align: left;
+  }
+  
+  .personality-title {
+    font-size: 1.25rem;
+  }
+  
+  .personality-subtitle {
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0 0;
+  }
+  
+  .personality-chart-container {
+    min-width: auto;
+    width: 100%;
+  }
+}
 
 .site-footer { text-align: center; color: var(--muted); padding: 30px 0 50px; }
 
