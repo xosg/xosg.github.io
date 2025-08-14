@@ -231,7 +231,94 @@ h1 { margin: 16px 0 8px; letter-spacing: 0.3px; }
   min-width: 400px;
 }
 
-.personality-chart { width: 100%; max-width: 900px; justify-self: center; }
+/* HTML/CSS-based personality chart */
+.personality-chart {
+  width: 100%;
+  max-width: 600px;
+  /* margin: 0 auto; */
+}
+
+.trait-bar {
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.trait-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+.bar-container {
+  position: relative;
+  height: 8px;
+  margin: 0.5rem 0;
+}
+
+.bar-track {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.8s ease-out;
+}
+
+.bar-fill.introverted { background: #06b6d4; }
+.bar-fill.intuitive { background: #f59e0b; }
+.bar-fill.thinking { background: #16a34a; }
+.bar-fill.prospecting { background: #9333ea; }
+.bar-fill.turbulent { background: #ef4444; }
+
+.bar-indicator {
+  position: absolute;
+  top: -0.25rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bar-indicator::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.trait-icon {
+  font-size: 1.3rem;
+  margin-top: 0.85rem;
+}
+
+.trait-percentage {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.85rem;
+  color: inherit;
+}
+
+.trait-bar:nth-child(1) .trait-percentage { color: #06b6d4; }
+.trait-bar:nth-child(2) .trait-percentage { color: #f59e0b; }
+.trait-bar:nth-child(3) .trait-percentage { color: #16a34a; }
+.trait-bar:nth-child(4) .trait-percentage { color: #9333ea; }
+.trait-bar:nth-child(5) .trait-percentage { color: #ef4444; }
+
 .personality-description { text-align: center; color: var(--muted); max-width: 600px; margin: 0 auto; }
 
 /* Responsive layout for narrow screens */
@@ -272,6 +359,24 @@ h1 { margin: 16px 0 8px; letter-spacing: 0.3px; }
     min-width: auto;
     width: 100%;
   }
+  
+  /* Move labels on top of bars for narrow screens */
+  .trait-labels {
+    position: absolute;
+    top: -1.6rem;
+    left: 0;
+    right: 0;
+    font-size: 0.875rem;
+    z-index: 2;
+  }
+  
+  .trait-bar {
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+  }
+  
+ 
+ 
 }
 
 .site-footer { text-align: center; color: var(--muted); padding: 30px 0 50px; }

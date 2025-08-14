@@ -128,7 +128,6 @@
 
   const skillsSvg = document.getElementById('skillsChartSvg');
   const languageSvg = document.getElementById('languageChartSvg');
-  const personalitySvg = document.getElementById('personalityChartSvg');
 
   function polarToCartesian(cx, cy, r, deg) {
     const rad = (deg - 90) * Math.PI / 180.0;
@@ -166,14 +165,6 @@
     { label: 'Chinese (Native)', value: 140, color: '#4f46e5' },
     { label: 'German', value: 38, color: '#16a34a' },
     { label: 'others', value: 17, color: '#ef4444' }
-  ];
-
-  const personalityData = [
-    { label: 'Extraverted', value: 62, color: '#06b6d4', pair: 'Introverted' },
-    { label: 'Intuitive', value: 15, color: '#f59e0b', pair: 'Observant' },
-    { label: 'Thinking', value: 30, color: '#16a34a', pair: 'Feeling' },
-    { label: 'Judging', value: 64, color: '#9333ea', pair: 'Prospecting' },
-    { label: 'Assertive', value: 63, color: '#ef4444', pair: 'Turbulent' }
   ];
 
   function renderPie(svg, data, title, subtitle) {
@@ -293,102 +284,6 @@
     });
   }
 
-  function renderPersonalityTraits(svg, data) {
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    const box = svg.viewBox.baseVal;
-    const width = box.width;
-    const height = box.height;
-    const barHeight = 6;
-    const spacing = height / (data.length + 0.5); // Increased spacing between bars
-    const barStart = 120; // Left margin
-    const barWidth = width - barStart - 120; // Bar width
-
-    // Icons for each trait
-    const icons = {
-      'Extraverted': '😥',
-      'Intuitive': '💡',
-      'Thinking': '🧠',
-      'Judging': '🔍',
-      'Assertive': '🌀'
-    };
-
-
-
-    data.forEach((trait, index) => {
-      const y = spacing * (index + 1) + 10; // Added offset for title
-      const percentage = trait.value;
-      const barLength = (barWidth * percentage) / 100;
-
-
-
-      // Progress bar
-      const progressRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      progressRect.setAttribute('x', barStart);
-      progressRect.setAttribute('y', y - barHeight / 2);
-      progressRect.setAttribute('width', barWidth);
-      progressRect.setAttribute('height', barHeight);
-      progressRect.setAttribute('rx', barHeight / 2);
-      progressRect.setAttribute('fill', trait.color);
-      svg.appendChild(progressRect);
-
-      // Circle indicator with icon and percentage
-      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      circle.setAttribute('cx', barStart + barLength);
-      circle.setAttribute('cy', y);
-      circle.setAttribute('r', 6);
-      circle.setAttribute('fill', trait.color);
-      circle.setAttribute('stroke', 'white');
-      circle.setAttribute('stroke-width', '2');
-      svg.appendChild(circle);
-
-      // Left label
-      const leftLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      leftLabel.textContent = trait.label;
-      leftLabel.setAttribute('x', barStart - 20);
-      leftLabel.setAttribute('y', y);
-      leftLabel.setAttribute('fill', 'rgba(255,255,255,0.9)');
-      leftLabel.setAttribute('font-size', '16');
-      leftLabel.setAttribute('dominant-baseline', 'middle');
-      leftLabel.setAttribute('text-anchor', 'end');
-      svg.appendChild(leftLabel);
-
-      // Icon and percentage at bar end
-      const iconAndPercent = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      iconAndPercent.setAttribute('x', barStart + barLength);
-      iconAndPercent.setAttribute('y', y - 25);
-      iconAndPercent.setAttribute('fill', 'rgba(255,255,255,0.9)');
-      iconAndPercent.setAttribute('font-size', '20');
-      iconAndPercent.setAttribute('dominant-baseline', 'middle');
-      iconAndPercent.setAttribute('text-anchor', 'middle');
-
-      const iconSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-      iconSpan.textContent = icons[trait.label] + ' ';
-      iconAndPercent.appendChild(iconSpan);
-
-      const percentSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-      percentSpan.textContent = (percentage > 50 ? percentage : (100 - percentage)) + '%';
-      percentSpan.setAttribute('fill', trait.color);
-      percentSpan.setAttribute('font-weight', 'bold');
-      iconAndPercent.appendChild(percentSpan);
-
-      svg.appendChild(iconAndPercent);
-
-      // Right label
-      const rightLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      rightLabel.textContent = trait.pair;
-      rightLabel.setAttribute('x', width - 100);
-      rightLabel.setAttribute('y', y);
-      rightLabel.setAttribute('fill', 'rgba(255,255,255,0.9)');
-      rightLabel.setAttribute('font-size', '16');
-      rightLabel.setAttribute('dominant-baseline', 'middle');
-      rightLabel.setAttribute('text-anchor', 'start');
-      svg.appendChild(rightLabel);
-
-      // if (percentage > 50) leftLabel.setAttribute('fill', trait.color)
-      // else rightLabel.setAttribute('fill', trait.color);
-    });
-  }
-
   if (skillsSvg instanceof SVGElement) {
     renderPie(skillsSvg, skillsData, 'Skills', 'distribution');
     window.addEventListener('resize', () => renderPie(skillsSvg, skillsData, 'Skills', 'distribution'));
@@ -397,10 +292,5 @@
   if (languageSvg instanceof SVGElement) {
     renderPie(languageSvg, languageData, 'Language', 'distribution');
     window.addEventListener('resize', () => renderPie(languageSvg, languageData, 'Languages', 'distribution'));
-  }
-
-  if (personalitySvg instanceof SVGElement) {
-    renderPersonalityTraits(personalitySvg, personalityData);
-    window.addEventListener('resize', () => renderPersonalityTraits(personalitySvg, personalityData));
   }
 })();
