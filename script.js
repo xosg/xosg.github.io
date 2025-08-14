@@ -1,0 +1,415 @@
+(function () {
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  const toObserve = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    toObserve.forEach((el) => observer.observe(el));
+  } else {
+    toObserve.forEach((el) => el.classList.add('visible'));
+  }
+
+  const lightbox = document.getElementById('lightbox');
+  const closeBtn = lightbox?.querySelector('.lightbox-close');
+  const nextBtn = lightbox?.querySelector('.lightbox-next');
+  const prevBtn = lightbox?.querySelector('.lightbox-prev');
+  const lightboxImg = lightbox?.querySelector('.lightbox-img');
+  const lightboxCaption = lightbox?.querySelector('.lightbox-caption');
+  let currentIndex = -1;
+  let galleryItems = [];
+
+  function openLightbox(src, alt, caption, index = -1) {
+    if (!lightbox || !lightboxImg || !lightboxCaption) return;
+    lightboxImg.setAttribute('src', src);
+    lightboxImg.setAttribute('alt', alt || 'Certificate');
+    lightboxCaption.textContent = caption || '';
+    lightbox.removeAttribute('hidden');
+    currentIndex = index;
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.setAttribute('hidden', '');
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+  if (nextBtn) nextBtn.addEventListener('click', () => step(1));
+  if (prevBtn) prevBtn.addEventListener('click', () => step(-1));
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lightbox.hasAttribute('hidden')) closeLightbox();
+      if (e.key === 'ArrowRight' && !lightbox.hasAttribute('hidden')) step(1);
+      if (e.key === 'ArrowLeft' && !lightbox.hasAttribute('hidden')) step(-1);
+    });
+  }
+
+  function step(delta) {
+    if (!galleryItems.length) return;
+    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+    const { src, alt, caption } = galleryItems[currentIndex];
+    openLightbox(src, alt, caption, currentIndex);
+  }
+
+  const certGrid = document.querySelector('.cert-grid');
+  if (certGrid) {
+    galleryItems = Array.from(certGrid.querySelectorAll('figure')).map((fig) => {
+      const img = fig.querySelector('img');
+      const caption = fig.querySelector('figcaption')?.textContent?.trim() || '';
+      return { src: img?.getAttribute('src') || '', alt: img?.getAttribute('alt') || '', caption };
+    });
+
+    certGrid.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      const img = target.closest('img');
+      const fig = target.closest('figure');
+      if (img && fig) {
+        const caption = fig.querySelector('figcaption')?.textContent?.trim() || '';
+        const index = Array.from(certGrid.querySelectorAll('figure')).indexOf(fig);
+        openLightbox(img.getAttribute('src') || '', img.getAttribute('alt') || '', caption, index);
+      }
+    });
+
+    const figures = certGrid.querySelectorAll('figure');
+    figures.forEach((fig) => {
+      const img = fig.querySelector('img');
+      if (!img) return;
+      function applyOrientation() {
+        const w = img.naturalWidth || img.width;
+        const h = img.naturalHeight || img.height;
+        if (!w || !h) return;
+        img.classList.toggle('landscape', w >= h);
+        img.classList.toggle('portrait', h > w);
+      }
+      if (img.complete) applyOrientation();
+      else img.addEventListener('load', applyOrientation, { once: true });
+    });
+
+    const images = Array.from(certGrid.querySelectorAll('img'));
+    Promise.all(images.map((img) => img.complete ? Promise.resolve() : new Promise((res) => img.addEventListener('load', res, { once: true }))))
+      .then(() => {
+        const figureData = Array.from(certGrid.querySelectorAll('figure')).map((fig, index) => {
+          const img = fig.querySelector('img');
+          const w = (img?.naturalWidth || img?.width || 0);
+          const h = (img?.naturalHeight || img?.height || 0);
+          const orientation = w >= h ? 'landscape' : 'portrait';
+          const area = w * h;
+          const ratio = h ? w / h : 1;
+          return { fig, index, orientation, area, ratio };
+        });
+
+        figureData.sort((a, b) => {
+          if (a.orientation !== b.orientation) return a.orientation === 'landscape' ? -1 : 1;
+          return b.area - a.area;
+        });
+
+        const fragment = document.createDocumentFragment();
+        figureData.forEach(({ fig }) => fragment.appendChild(fig));
+        certGrid.appendChild(fragment);
+
+        galleryItems = Array.from(certGrid.querySelectorAll('figure')).map((fig) => {
+          const img = fig.querySelector('img');
+          const caption = fig.querySelector('figcaption')?.textContent?.trim() || '';
+          return { src: img?.getAttribute('src') || '', alt: img?.getAttribute('alt') || '', caption };
+        });
+      });
+  }
+
+  const skillsSvg = document.getElementById('skillsChartSvg');
+  const languageSvg = document.getElementById('languageChartSvg');
+  const personalitySvg = document.getElementById('personalityChartSvg');
+
+  function polarToCartesian(cx, cy, r, deg) {
+    const rad = (deg - 90) * Math.PI / 180.0;
+    return {
+      x: cx + (r * Math.cos(rad)),
+      y: cy + (r * Math.sin(rad))
+    };
+  }
+
+  function describeDonutSlice(cx, cy, inner, outer, startAngle, endAngle) {
+    const p1 = polarToCartesian(cx, cy, outer, endAngle);
+    const p2 = polarToCartesian(cx, cy, outer, startAngle);
+    const p3 = polarToCartesian(cx, cy, inner, startAngle);
+    const p4 = polarToCartesian(cx, cy, inner, endAngle);
+    const large = endAngle - startAngle <= 180 ? '0' : '1';
+    return [
+      `M ${p1.x} ${p1.y}`,
+      `A ${outer} ${outer} 0 ${large} 0 ${p2.x} ${p2.y}`,
+      `L ${p3.x} ${p3.y}`,
+      `A ${inner} ${inner} 0 ${large} 1 ${p4.x} ${p4.y}`,
+      'Z'
+    ].join(' ');
+  }
+
+  const skillsData = [
+    { label: 'Frontend Dev', value: 90, color: '#4f46e5' },
+    { label: 'Backend Dev', value: 65, color: '#06b6d4' },
+    { label: 'DevOps', value: 33, color: '#16a34a' },
+    { label: 'UI Design', value: 40, color: '#f59e0b' },
+    { label: '3D Visualization', value: 70, color: '#ef4444' }
+  ];
+
+  const languageData = [
+    { label: 'English (B2)', value: 90, color: '#06b6d4' },
+    { label: 'Chinese (Native)', value: 140, color: '#4f46e5' },
+    { label: 'German', value: 38, color: '#16a34a' },
+    { label: 'others', value: 17, color: '#ef4444' }
+  ];
+
+  const personalityData = [
+    { label: 'Extraverted', value: 62, color: '#06b6d4', pair: 'Introverted' },
+    { label: 'Intuitive', value: 15, color: '#f59e0b', pair: 'Observant' },
+    { label: 'Thinking', value: 30, color: '#16a34a', pair: 'Feeling' },
+    { label: 'Judging', value: 64, color: '#9333ea', pair: 'Prospecting' },
+    { label: 'Assertive', value: 63, color: '#ef4444', pair: 'Turbulent' }
+  ];
+
+  function renderPie(svg, data, title, subtitle) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const box = svg.viewBox.baseVal;
+    const cx = box.width / 2;
+    const cy = box.height / 2;
+    const radius = Math.min(cx, cy) - 6;
+    const ring = Math.max(12, radius * 0.3);
+    const inner = radius - ring;
+
+    const total = data.reduce((s, d) => s + d.value, 0) || 1;
+    let start = -180;
+
+    const chartTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    chartTitle.textContent = title;
+    chartTitle.setAttribute('x', '100');
+    chartTitle.setAttribute('y', '90');
+    chartTitle.setAttribute('class', 'chart-title');
+    chartTitle.setAttribute('text-anchor', 'middle');
+    chartTitle.setAttribute('fill', 'rgba(230,232,240,0.92)');
+    chartTitle.setAttribute('font-size', '22');
+    svg.appendChild(chartTitle);
+
+    const chartSubtitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    chartSubtitle.textContent = subtitle;
+    chartSubtitle.setAttribute('x', '100');
+    chartSubtitle.setAttribute('y', '110');
+    chartSubtitle.setAttribute('class', 'chart-subtitle');
+    chartSubtitle.setAttribute('text-anchor', 'middle');
+    chartSubtitle.setAttribute('fill', 'rgba(230,232,240,0.65)');
+    chartSubtitle.setAttribute('font-size', '15');
+    svg.appendChild(chartSubtitle);
+
+    const bg = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    bg.setAttribute('cx', String(cx));
+    bg.setAttribute('cy', String(cy));
+    bg.setAttribute('r', String((inner + radius) / 2));
+    bg.setAttribute('fill', 'none');
+    bg.setAttribute('stroke', 'rgba(255,255,255,0.10)');
+    bg.setAttribute('stroke-width', String(ring));
+    svg.appendChild(bg);
+
+    data.forEach((item, idx) => {
+      const angle = (item.value / total) * 360;
+      const end = start + angle;
+
+      const pathData = describeDonutSlice(cx, cy, inner, radius, start, end);
+      const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', pathData);
+      p.setAttribute('fill', item.color);
+      p.setAttribute('fill-opacity', '0.9');
+      svg.appendChild(p);
+
+      const textRadius = (inner + radius) / 2;
+      const midAngle = start + (angle / 2);
+
+      if (midAngle > -90 && midAngle < 90) {
+        const startPoint = polarToCartesian(cx, cy, textRadius, start);
+        const endPoint = polarToCartesian(cx, cy, textRadius, end);
+        const largeArc = angle > 180 ? 1 : 0;
+
+        const pathId = `textPath-${svg.id}-${idx}`;
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('id', pathId);
+        path.setAttribute('d', `M ${startPoint.x} ${startPoint.y} A ${textRadius} ${textRadius} 0 ${largeArc} 1 ${endPoint.x} ${endPoint.y}`);
+        path.setAttribute('fill', 'none');
+        defs.appendChild(path);
+        svg.appendChild(defs);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('dominant-baseline', 'middle');
+        text.setAttribute('fill', '#fff');
+        text.setAttribute('font-size', '10px');
+        text.setAttribute('letter-spacing', '-0.7px');
+
+        const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
+        textPath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${pathId}`);
+        textPath.setAttribute('startOffset', '50%');
+        textPath.setAttribute('text-anchor', 'middle');
+        textPath.textContent = item.label;
+        text.appendChild(textPath);
+        svg.appendChild(text);
+      } else {
+        const pathId = `textPath-${svg.id}-${idx}`;
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+
+        const startPoint = polarToCartesian(cx, cy, textRadius, start);
+        const endPoint = polarToCartesian(cx, cy, textRadius, end);
+        const largeArc = angle > 180 ? 1 : 0;
+
+        const reversePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const reverseId = `${pathId}-reverse`;
+        reversePath.setAttribute('id', reverseId);
+        reversePath.setAttribute('d', `M ${endPoint.x} ${endPoint.y} A ${textRadius} ${textRadius} 0 ${largeArc} 0 ${startPoint.x} ${startPoint.y}`);
+        defs.appendChild(reversePath);
+        svg.appendChild(defs);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('dominant-baseline', 'middle');
+        text.setAttribute('fill', '#fff');
+        text.setAttribute('font-size', '10px');
+        text.setAttribute('letter-spacing', '-0.7px');
+
+        const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
+        textPath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${reverseId}`);
+        textPath.setAttribute('startOffset', '50%');
+        textPath.setAttribute('text-anchor', 'middle');
+        textPath.textContent = item.label;
+        text.appendChild(textPath);
+        svg.appendChild(text);
+      }
+
+      start = end;
+    });
+  }
+
+  function renderPersonalityTraits(svg, data) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const box = svg.viewBox.baseVal;
+    const width = box.width;
+    const height = box.height;
+    const barHeight = 6;
+    const spacing = height / (data.length + 0.5); // Increased spacing between bars
+    const barStart = 120; // Reduced left margin even more
+    const barWidth = width - barStart - 120; // Wider bars
+
+    // Icons for each trait
+    const icons = {
+      'Extraverted': '😥',
+      'Intuitive': '💡',
+      'Thinking': '🧠',
+      'Judging': '🔍',
+      'Assertive': '🌀'
+    };
+
+    // Add title
+    const title = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    title.textContent = 'Personality MBTI: INTP-T (Logician)';
+    title.setAttribute('x', '20');
+    title.setAttribute('y', '35');
+    title.setAttribute('fill', 'rgba(255,255,255,0.9)');
+    title.setAttribute('font-size', '24');
+    svg.appendChild(title);
+
+
+
+    data.forEach((trait, index) => {
+      const y = spacing * (index + 1) + 10; // Added offset for title
+      const percentage = trait.value;
+      const barLength = (barWidth * percentage) / 100;
+
+
+
+      // Progress bar
+      const progressRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      progressRect.setAttribute('x', barStart);
+      progressRect.setAttribute('y', y - barHeight / 2);
+      progressRect.setAttribute('width', barWidth);
+      progressRect.setAttribute('height', barHeight);
+      progressRect.setAttribute('rx', barHeight / 2);
+      progressRect.setAttribute('fill', trait.color);
+      svg.appendChild(progressRect);
+
+      // Circle indicator with icon and percentage
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', barStart + barLength);
+      circle.setAttribute('cy', y);
+      circle.setAttribute('r', 6);
+      circle.setAttribute('fill', trait.color);
+      circle.setAttribute('stroke', 'white');
+      circle.setAttribute('stroke-width', '2');
+      svg.appendChild(circle);
+
+      // Left label
+      const leftLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      leftLabel.textContent = trait.label;
+      leftLabel.setAttribute('x', barStart - 10);
+      leftLabel.setAttribute('y', y);
+      leftLabel.setAttribute('fill', 'rgba(255,255,255,0.9)');
+      leftLabel.setAttribute('font-size', '16');
+      leftLabel.setAttribute('dominant-baseline', 'middle');
+      leftLabel.setAttribute('text-anchor', 'end');
+      svg.appendChild(leftLabel);
+
+      // Icon and percentage at bar end
+      const iconAndPercent = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      iconAndPercent.setAttribute('x', barStart + barLength);
+      iconAndPercent.setAttribute('y', y - 25);
+      iconAndPercent.setAttribute('fill', 'rgba(255,255,255,0.9)');
+      iconAndPercent.setAttribute('font-size', '20');
+      iconAndPercent.setAttribute('dominant-baseline', 'middle');
+      iconAndPercent.setAttribute('text-anchor', 'middle');
+
+      const iconSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+      iconSpan.textContent = icons[trait.label] + ' ';
+      iconAndPercent.appendChild(iconSpan);
+
+      const percentSpan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+      percentSpan.textContent = (percentage > 50 ? percentage : (100 - percentage)) + '%';
+      percentSpan.setAttribute('fill', trait.color);
+      percentSpan.setAttribute('font-weight', 'bold');
+      iconAndPercent.appendChild(percentSpan);
+
+      svg.appendChild(iconAndPercent);
+
+      // Right label
+      const rightLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      rightLabel.textContent = trait.pair;
+      rightLabel.setAttribute('x', width - 20);
+      rightLabel.setAttribute('y', y);
+      rightLabel.setAttribute('fill', 'rgba(255,255,255,0.9)');
+      rightLabel.setAttribute('font-size', '16');
+      rightLabel.setAttribute('dominant-baseline', 'middle');
+      rightLabel.setAttribute('text-anchor', 'end');
+      svg.appendChild(rightLabel);
+
+      // if (percentage > 50) leftLabel.setAttribute('fill', trait.color)
+      // else rightLabel.setAttribute('fill', trait.color);
+    });
+  }
+
+  if (skillsSvg instanceof SVGElement) {
+    renderPie(skillsSvg, skillsData, 'Skills', 'distribution');
+    window.addEventListener('resize', () => renderPie(skillsSvg, skillsData, 'Skills', 'distribution'));
+  }
+
+  if (languageSvg instanceof SVGElement) {
+    renderPie(languageSvg, languageData, 'Language', 'distribution');
+    window.addEventListener('resize', () => renderPie(languageSvg, languageData, 'Languages', 'distribution'));
+  }
+
+  if (personalitySvg instanceof SVGElement) {
+    renderPersonalityTraits(personalitySvg, personalityData);
+    window.addEventListener('resize', () => renderPersonalityTraits(personalitySvg, personalityData));
+  }
+})();

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Personal resume and portfolio" />
+    <title>John Doe — Resume & Portfolio</title>
+    <link rel="icon" href="assets/avatar.svg" type="image/svg+xml" />
+    <link rel="preload" href="styles.css" as="style" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav">
+        <div class="brand">🧑‍💻 John Doe</div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#accounts">Accounts</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#certificates">Certificates</a></li>
+          <li><a href="#skills">Skills</a></li>
+        </ul>
+      </nav>
+
+      <section class="hero">
+        <img class="avatar" src="assets/avatar.svg" alt="Avatar" />
+        <h1>John Doe</h1>
+        <p class="subtitle">Frontend Engineer • Creative Coder • Web Enthusiast</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="mailto:john.doe@example.com">📫 Contact</a>
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="#certificates">Certificates</a>
+        </div>
+      </section>
+    </header>
+
+    <main id="main">
+      <section id="about" class="section">
+        <div class="section-head">
+          <h2>About Me</h2>
+          <p>Personal information</p>
+        </div>
+        <div class="about-grid reveal">
+          <div class="about-card card">
+            <h3>👤 Personal Info</h3>
+            <ul>
+              <li><strong>Name</strong>: John Doe</li>
+              <li><strong>Title</strong>: Frontend Engineer</li>
+              <li><strong>Location</strong>: Anywhere, Earth 🌍</li>
+              <li><strong>Email</strong>: john.doe@example.com</li>
+              <li><strong>Website</strong>: example.dev</li>
+            </ul>
+          </div>
+          <div class="about-card card">
+            <h3>✨ Bio</h3>
+            <p>
+              Passionate web developer focused on creating delightful, accessible
+              user experiences. I enjoy working with modern CSS, semantic HTML,
+              and vanilla JavaScript to craft fast, resilient interfaces.
+            </p>
+          </div>
+          <div class="about-card card">
+            <h3>🧰 Tech Snapshot</h3>
+            <p>HTML, CSS, JavaScript (ES2023), Accessibility, Performance, UX</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="accounts" class="section alt">
+        <div class="section-head">
+          <h2>Technical Accounts</h2>
+          <p>Blogs and social developer profiles</p>
+        </div>
+        <div class="card-grid reveal">
+          <a class="account card" href="https://github.com/placeholder" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
+            <div class="icon"><img class="icon-img" src="assets/icons/github.svg" alt="GitHub" /></div>
+            <div>
+              <h3>GitHub</h3>
+              <p>Code, experiments, and open source contributions</p>
+            </div>
+          </a>
+          <a class="account card" href="https://stackoverflow.com/users/placeholder" target="_blank" rel="noreferrer noopener" aria-label="Stack Overflow">
+            <div class="icon"><img class="icon-img" src="assets/icons/stackoverflow.svg" alt="Stack Overflow" /></div>
+            <div>
+              <h3>Stack Overflow</h3>
+              <p>Questions, answers, and developer knowledge</p>
+            </div>
+          </a>
+          <a class="account card" href="https://medium.com/@placeholder" target="_blank" rel="noreferrer noopener" aria-label="Medium">
+            <div class="icon"><img class="icon-img" src="assets/icons/medium.svg" alt="Medium" /></div>
+            <div>
+              <h3>Medium</h3>
+              <p>Articles on frontend craftsmanship</p>
+            </div>
+          </a>
+          <a class="account card" href="https://dev.to/placeholder" target="_blank" rel="noreferrer noopener" aria-label="Dev.to">
+            <div class="icon"><img class="icon-img" src="assets/icons/devto.svg" alt="Dev.to" /></div>
+            <div>
+              <h3>Dev.to</h3>
+              <p>Tutorials and coding tips</p>
+            </div>
+          </a>
+          <a class="account card" href="https://linkedin.com/in/placeholder" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
+            <div class="icon"><img class="icon-img" src="assets/icons/linkedin.svg" alt="LinkedIn" /></div>
+            <div>
+              <h3>LinkedIn</h3>
+              <p>Professional journey and achievements</p>
+            </div>
+          </a>
+          <a class="account card" href="https://twitter.com/placeholder" target="_blank" rel="noreferrer noopener" aria-label="X">
+            <div class="icon"><img class="icon-img" src="assets/icons/x.svg" alt="X" /></div>
+            <div>
+              <h3>X (Twitter)</h3>
+              <p>Short thoughts on web development</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Featured repositories</p>
+        </div>
+        <div class="projects-grid reveal">
+          <article class="project card">
+            <div class="project-body">
+              <h3>Fancy Buttons</h3>
+              <p>Collection of accessible, animated CSS button recipes.</p>
+              <ul class="tags">
+                <li>HTML</li><li>CSS</li><li>A11y</li>
+              </ul>
+            </div>
+            <div class="project-actions">
+              <a class="btn" href="https://github.com/placeholder/fancy-buttons" target="_blank" rel="noreferrer noopener">Repo</a>
+              <a class="btn" href="#" aria-disabled="true">Demo</a>
+            </div>
+          </article>
+          <article class="project card">
+            <div class="project-body">
+              <h3>Vanilla Charts</h3>
+              <p>Lightweight chart utilities with zero dependencies.</p>
+              <ul class="tags">
+                <li>JS</li><li>Canvas</li><li>Performance</li>
+              </ul>
+            </div>
+            <div class="project-actions">
+              <a class="btn" href="https://github.com/placeholder/vanilla-charts" target="_blank" rel="noreferrer noopener">Repo</a>
+              <a class="btn" href="#" aria-disabled="true">Demo</a>
+            </div>
+          </article>
+          <article class="project card">
+            <div class="project-body">
+              <h3>CSS Layouts</h3>
+              <p>Practical layout patterns with flexbox and grid.</p>
+              <ul class="tags">
+                <li>CSS</li><li>Grid</li><li>Flexbox</li>
+              </ul>
+            </div>
+            <div class="project-actions">
+              <a class="btn" href="https://github.com/placeholder/css-layouts" target="_blank" rel="noreferrer noopener">Repo</a>
+              <a class="btn" href="#" aria-disabled="true">Demo</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="certificates" class="section alt">
+        <div class="section-head">
+          <h2>Certificates</h2>
+          <p>Gallery of achievements</p>
+        </div>
+        <div class="cert-grid reveal" aria-live="polite">
+          <figure class="cert">
+            <img src="assets/certificates/cert1.svg" alt="Certificate 1" loading="lazy" decoding="async" />
+            <figcaption>Certificate Title #1</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert2.svg" alt="Certificate 2" loading="lazy" decoding="async" />
+            <figcaption>Certificate Title #2</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert3.svg" alt="Certificate 3" loading="lazy" decoding="async" />
+            <figcaption>Certificate Title #3</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert_v1.svg" alt="Certificate Portrait #1" loading="lazy" decoding="async" />
+            <figcaption>Certificate Portrait #1</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert4.svg" alt="Certificate 4" loading="lazy" decoding="async" />
+            <figcaption>Certificate Title #4</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert5.svg" alt="Certificate 5" loading="lazy" decoding="async" />
+            <figcaption>Certificate Title #5</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert_v2.svg" alt="Certificate Portrait #2" loading="lazy" decoding="async" />
+            <figcaption>Certificate Portrait #2</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert6.svg" alt="Certificate 6" loading="lazy" decoding="async" />
+            <figcaption>Certificate Title #6</figcaption>
+          </figure>
+          <figure class="cert">
+            <img src="assets/certificates/cert_v3.svg" alt="Certificate Portrait #3" loading="lazy" decoding="async" />
+            <figcaption>Certificate Portrait #3</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <div class="chart-grid">
+        <section id="skills" class="section">
+          <div class="skills-wrap reveal">
+            <svg id="skillsChartSvg" class="skills-chart" viewBox="0 0 200 200" role="img" aria-label="Skills distribution chart"></svg>
+          </div>
+        </section>
+
+        <section id="languages" class="section alt">
+          <div class="skills-wrap reveal">
+            <svg id="languageChartSvg" class="skills-chart" viewBox="0 0 200 200" role="img" aria-label="Language fluency chart"></svg>
+          </div>
+        </section>
+      </div>
+
+      <section id="personality" class="section">
+        <div class="personality-wrap reveal">
+          <svg id="personalityChartSvg" class="personality-chart" viewBox="0 0 900 400" role="img" aria-label="Personality traits"></svg>
+          <p class="personality-description">Logicians are innovative inventors with an unquenchable thirst for knowledge. These flexible thinkers enjoy approaching life unconventionally, often seeking out unlikely paths.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> John Doe. Built with semantic HTML, modern CSS, and vanilla JS.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Certificate viewer">
+      <button class="lightbox-close" aria-label="Close">✖</button>
+      <button class="lightbox-prev" aria-label="Previous">‹</button>
+      <img class="lightbox-img" alt="Expanded certificate" />
+      <button class="lightbox-next" aria-label="Next">›</button>
+      <p class="lightbox-caption" id="lightbox-caption"></p>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+  </html>
+
+
