@@ -13,8 +13,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 4rem;
+  aspect-ratio: 1;
   border-radius: 12px;
   background: #1b2248;
   box-shadow: 0 2px 8px rgba(76, 123, 255, 0.10);
@@ -23,19 +23,19 @@
   position: relative;
   cursor: pointer;
 }
-.account-icon:hover, .account-icon:focus {
+
+.account-icon:hover,
+.account-icon:focus {
   background: linear-gradient(180deg, #151c3f, #121836);
   transform: translateY(-2px) scale(1.07);
 }
-.account-icon svg {
-  display: block;
-  width: 32px;
-  height: 32px;
-}
+
 .account-icon[title] {
   position: relative;
 }
-.account-icon[title]:hover::after, .account-icon[title]:focus::after {
+
+.account-icon[title]:hover::after,
+.account-icon[title]:focus::after {
   content: attr(title);
   position: absolute;
   left: 50%;
@@ -47,11 +47,12 @@
   border-radius: 6px;
   font-size: 0.98em;
   white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
   z-index: 10;
   pointer-events: none;
   opacity: 0.97;
 }
+
 /* Concise Timeline with Vertical Line and Year on Left */
 .timeline-connected {
   position: relative;
