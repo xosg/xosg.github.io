@@ -1,0 +1,25 @@
+[
+  {
+    "selector": "#skillsChartSvg",
+    "title": "Skills",
+    "subtitle": "distribution",
+    "data": [
+      { "label": "Frontend Dev", "value": 90, "color": "#4f46e5" },
+      { "label": "Backend Dev", "value": 65, "color": "#06b6d4" },
+      { "label": "DevOps", "value": 33, "color": "#16a34a" },
+      { "label": "UI Design", "value": 40, "color": "#f59e0b" },
+      { "label": "3D Visualization", "value": 70, "color": "#ef4444" }
+    ]
+  },
+  {
+    "selector": "#languageChartSvg",
+    "title": "Language",
+    "subtitle": "distribution",
+    "data": [
+      { "label": "English (B2)", "value": 90, "color": "#06b6d4" },
+      { "label": "Chinese (Native)", "value": 140, "color": "#4f46e5" },
+      { "label": "German", "value": 38, "color": "#16a34a" },
+      { "label": "others", "value": 17, "color": "#ef4444" }
+    ]
+  }
+]

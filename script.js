@@ -245,20 +245,25 @@
     ].join(' ');
   }
 
-  const skillsData = [
-    { label: 'Frontend Dev', value: 90, color: '#4f46e5' },
-    { label: 'Backend Dev', value: 65, color: '#06b6d4' },
-    { label: 'DevOps', value: 33, color: '#16a34a' },
-    { label: 'UI Design', value: 40, color: '#f59e0b' },
-    { label: '3D Visualization', value: 70, color: '#ef4444' }
-  ];
 
-  const languageData = [
-    { label: 'English (B2)', value: 90, color: '#06b6d4' },
-    { label: 'Chinese (Native)', value: 140, color: '#4f46e5' },
-    { label: 'German', value: 38, color: '#16a34a' },
-    { label: 'others', value: 17, color: '#ef4444' }
-  ];
+
+    async function loadPieCharts() {
+      try {
+        const res = await fetch('data/skills.json');
+        if (!res.ok) throw new Error('Failed to load pie chart data');
+        const charts = await res.json();
+        // charts should be an array of { selector, title, subtitle, data }
+        charts.forEach(chart => {
+          const svg = document.querySelector(chart.selector);
+          if (svg instanceof SVGElement) {
+            renderPie(svg, chart.data, chart.title, chart.subtitle);
+            window.addEventListener('resize', () => renderPie(svg, chart.data, chart.title, chart.subtitle));
+          }
+        });
+      } catch (e) {
+        // fallback: do nothing
+      }
+    }
 
   function renderPie(svg, data, title, subtitle) {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
@@ -333,8 +338,8 @@
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('dominant-baseline', 'middle');
         text.setAttribute('fill', '#fff');
-        text.setAttribute('font-size', '10px');
-        text.setAttribute('letter-spacing', '-0.7px');
+        text.setAttribute('font-size', '11');
+        text.setAttribute('letter-spacing', '-0.7');
 
         const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
         textPath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${pathId}`);
@@ -361,8 +366,8 @@
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('dominant-baseline', 'middle');
         text.setAttribute('fill', '#fff');
-        text.setAttribute('font-size', '10px');
-        text.setAttribute('letter-spacing', '-0.7px');
+        text.setAttribute('font-size', '11');
+        text.setAttribute('letter-spacing', '-0.7');
 
         const textPath = document.createElementNS('http://www.w3.org/2000/svg', 'textPath');
         textPath.setAttributeNS('http://www.w3.org/1999/xlink', 'href', `#${reverseId}`);
@@ -377,13 +382,5 @@
     });
   }
 
-  if (skillsSvg instanceof SVGElement) {
-    renderPie(skillsSvg, skillsData, 'Skills', 'distribution');
-    window.addEventListener('resize', () => renderPie(skillsSvg, skillsData, 'Skills', 'distribution'));
-  }
-
-  if (languageSvg instanceof SVGElement) {
-    renderPie(languageSvg, languageData, 'Language', 'distribution');
-    window.addEventListener('resize', () => renderPie(languageSvg, languageData, 'Language', 'distribution'));
-  }
+  loadPieCharts();
 })();
