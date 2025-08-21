@@ -630,8 +630,9 @@ h1 {
 .card {
   background: linear-gradient(180deg, var(--card), var(--card-2));
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  padding: 16px;
+  border-radius: 1rem;
+  padding: 1rem;
+  /* padding-top: 0; */
   box-shadow: 0 10px 30px var(--shadow);
   transition: transform 240ms ease, box-shadow 240ms ease;
 }
@@ -975,7 +976,7 @@ h1 {
   .personality-info {
     flex-direction: row;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     width: 100%;
     justify-content: center;
   }
@@ -1124,11 +1125,8 @@ h1 {
 }
 
 @media (max-width: 640px) {
-
-  .about-grid,
-  .projects-grid,
-  .card-grid {
-    grid-template-columns: 1fr;
+  .project.card span {
+    display: none;
   }
 
   .cert-grid {

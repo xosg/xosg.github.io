@@ -45,8 +45,9 @@
         card.innerHTML = `
           <div class="project-body">
             <span style="font-size:2rem;line-height:1;vertical-align:middle;">${project.icon ? project.icon : '💡'}</span>
-            <h3 style="display:inline-block;margin-left:0.5em;vertical-align:middle;">${project.title}</h3>
-            <p>${project.desc}</p>
+            <h3 style="display:inline-block;vertical-align:middle; margin:0;">${project.title}</h3>
+            <br>
+            <p style="margin:0; margin-top: 1rem;">${project.desc}</p>
           </div>
         `;
         grid.appendChild(card);
