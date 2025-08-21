@@ -1,4 +1,35 @@
 (function () {
+  // Dynamically load and render project cards
+  async function loadProjects() {
+    const grid = document.getElementById('projectsGrid');
+    if (!grid) return;
+    try {
+      const res = await fetch('data/projects.json');
+      if (!res.ok) throw new Error('Failed to load projects');
+      const projects = await res.json();
+      grid.innerHTML = '';
+      projects.forEach(project => {
+        const card = document.createElement('a');
+        card.className = 'project card';
+        card.href = project.link;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+        card.style.textDecoration = 'none';
+        card.innerHTML = `
+          <div class="project-body">
+            <h3>${project.title}</h3>
+            <p>${project.desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    } catch (e) {
+      grid.innerHTML = '<p style="color:var(--danger)">Failed to load projects.</p>';
+    }
+  }
+
+  // Call loadProjects on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', loadProjects);
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
