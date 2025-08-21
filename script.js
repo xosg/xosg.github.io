@@ -1,4 +1,31 @@
 (function () {
+  // Dynamically load and render timeline entries
+  async function loadTimeline() {
+    const container = document.getElementById('timelineConnected');
+    if (!container) return;
+    try {
+      const res = await fetch('data/timeline.json');
+      if (!res.ok) throw new Error('Failed to load timeline');
+      const timeline = await res.json();
+      container.innerHTML = '';
+      timeline.forEach(entry => {
+        const row = document.createElement('div');
+        row.className = 'timeline-entry-connected';
+        row.innerHTML = `
+          <div class="timeline-year-connected">${entry.year}</div>
+          <div class="timeline-dot-connected"></div>
+          <div class="timeline-content-connected">
+            <div class="timeline-title"><span class="timeline-icon">${entry.icon || ''}</span>${entry.title}</div>
+            <div class="timeline-desc">${entry.desc}</div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    } catch (e) {
+      container.innerHTML = '<p style="color:var(--danger)">Failed to load timeline.</p>';
+    }
+  }
+
   // Dynamically load and render project cards
   async function loadProjects() {
     const grid = document.getElementById('projectsGrid');
@@ -29,8 +56,11 @@
     }
   }
 
-  // Call loadProjects on DOMContentLoaded
-  document.addEventListener('DOMContentLoaded', loadProjects);
+  // Call loadProjects and loadTimeline on DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProjects();
+    loadTimeline();
+  });
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 

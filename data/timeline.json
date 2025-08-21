@@ -1,0 +1,56 @@
+[
+    {
+        "year": "2018",
+        "icon": "🛠️",
+        "title": "B/S/H Home Appliances Corp (Germany)",
+        "desc": "Software Engineering Intern at B/S/H, Germany. Gained hands-on experience in real-world projects and collaborative teamwork."
+    },
+    {
+        "year": "2019",
+        "icon": "🎓",
+        "title": "Graduated from NUIST",
+        "desc": "Earned a Bachelor's degree in Computer Science and Software Engineering from Nanjing University of Information Science & Technology."
+    },
+    {
+        "year": "2020",
+        "icon": "💼",
+        "title": "Nanjing Safirst Technology",
+        "desc": "Joined Nanjing Safirst Technology as a Senior Developer, contributing to both frontend and backend projects."
+    },
+    {
+        "year": "2021",
+        "icon": "🌐",
+        "title": "Open Source: Peer-Stream",
+        "desc": "Developed and maintained Peer-Stream, a lightweight WebRTC SDK for Unreal Engine Pixel Streaming, enhancing real-time communication."
+    },
+    {
+        "year": "2022",
+        "icon": "🎨",
+        "title": "Insigma Technology Co., Ltd.",
+        "desc": "Became a Full Stack Developer and Technical Artist at Insigma Technology, working on innovative digital solutions."
+    },
+    {
+        "year": "2023",
+        "icon": "📄",
+        "title": "Patent Granted: Web Design",
+        "desc": "Granted a patent titled 'A Design Pattern of Web Components Based on Stack Machine'."
+    },
+    {
+        "year": "2024",
+        "icon": "📑",
+        "title": "EI Paper: 3D Visual System",
+        "desc": "Published a research paper in an EI-indexed journal: 'Design and Implementation of a 3D Visual System Based on Cloud Rendering'."
+    },
+    {
+        "year": "2025",
+        "icon": "🗣️",
+        "title": "Duolingo English Test (CEFR B2)",
+        "desc": "Achieved CEFR B2 level proficiency (120 points) in English via the Duolingo English Test."
+    },
+    {
+        "year": "2026",
+        "icon": "🎓",
+        "title": "XU Exponential University",
+        "desc": "Pursuing a Master's degree in Artificial Intelligence at XU Exponential University of Applied Sciences."
+    }
+]
