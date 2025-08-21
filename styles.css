@@ -590,11 +590,14 @@ img {
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  height: 11rem;
+  aspect-ratio: 1;
   border-radius: 50%;
-  box-shadow: 0 8px 30px var(--shadow);
   transition: transform 400ms ease;
+  font-size: 6rem;
+  border: #00adff54 4px solid;
+  background: #00adff1a;
+  border-bottom: 0;
 }
 
 .avatar:hover {
