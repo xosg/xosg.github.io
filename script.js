@@ -62,7 +62,7 @@
     const grid = document.getElementById('accountsGrid');
     if (!grid) return;
 
-    const res = await fetch('./svg.html');
+    const res = await fetch('./data/svg.html');
     if (!res.ok) throw new Error('Failed to load accounts');
     let accounts = await res.text();
     accounts = accounts.split('\n')
