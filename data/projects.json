@@ -1,32 +1,38 @@
 [
     {
-        "title": "Peer Stream",
-        "desc": "Lightweight WebRTC SDK for UnrealEngine's PixelStreaming",
-        "link": "https://github.com/inveta/peer-stream"
+    "title": "Peer Stream",
+    "desc": "Lightweight WebRTC SDK for UnrealEngine's PixelStreaming",
+    "link": "https://github.com/inveta/peer-stream",
+    "icon": "🔗"
     },
     {
-        "title": "Web Games",
-        "desc": "A collection of light-weight but fancy games based on Chromium Engine",
-        "link": "https://github.com/xosg/WebGames"
+    "title": "Web Games",
+    "desc": "A collection of light-weight but fancy games based on Chromium Engine",
+    "link": "https://github.com/xosg/WebGames",
+    "icon": "🎮"
     },
     {
-        "title": "3D Utility",
-        "desc": "A collection of 3D utilities for game development.",
-        "link": "https://github.com/xosg/3D-utility"
+    "title": "3D Utility",
+    "desc": "A collection of 3D utilities for game development.",
+    "link": "https://github.com/xosg/3D-utility",
+    "icon": "🧊"
     },
     {
-        "title": "Zipack",
-        "desc": "Zipack is an efficient binary serialization format which beats JSON in size.",
-        "link": "https://github.com/zipack/spec"
+    "title": "Zipack",
+    "desc": "Zipack is an efficient binary serialization format which beats JSON in size.",
+    "link": "https://github.com/zipack/spec",
+    "icon": "📦"
     },
     {
-        "title": "Web Animations",
-        "desc": "A bunch of fancy animations and effects for web applications.",
-        "link": "https://github.com/xosg/Web-Animation"
+    "title": "Web Animations",
+    "desc": "A bunch of fancy animations and effects for web applications.",
+    "link": "https://github.com/xosg/Web-Animation",
+    "icon": "✨"
     },
     {
-        "title": "World History",
-        "desc": "A comprehensive illustration and visualization of global historical maps.",
-        "link": "https://github.com/xosg/World-History"
+    "title": "World History",
+    "desc": "A comprehensive illustration and visualization of global historical maps.",
+    "link": "https://github.com/xosg/World-History",
+    "icon": "🌍"
     }
 ]

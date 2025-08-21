@@ -17,7 +17,8 @@
         card.style.textDecoration = 'none';
         card.innerHTML = `
           <div class="project-body">
-            <h3>${project.title}</h3>
+            <span style="font-size:2rem;line-height:1;vertical-align:middle;">${project.icon ? project.icon : '💡'}</span>
+            <h3 style="display:inline-block;margin-left:0.5em;vertical-align:middle;">${project.title}</h3>
             <p>${project.desc}</p>
           </div>
         `;
