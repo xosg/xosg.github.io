@@ -275,9 +275,9 @@
     const chartTitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     chartTitle.textContent = title;
     chartTitle.setAttribute('x', '100');
-    chartTitle.setAttribute('y', '90');
-    chartTitle.setAttribute('class', 'chart-title');
+    chartTitle.setAttribute('y', '88');
     chartTitle.setAttribute('text-anchor', 'middle');
+    chartTitle.setAttribute('dominant-baseline', 'central');
     chartTitle.setAttribute('fill', 'rgba(230,232,240,0.92)');
     chartTitle.setAttribute('font-size', '22');
     svg.appendChild(chartTitle);
@@ -285,9 +285,9 @@
     const chartSubtitle = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     chartSubtitle.textContent = subtitle;
     chartSubtitle.setAttribute('x', '100');
-    chartSubtitle.setAttribute('y', '110');
-    chartSubtitle.setAttribute('class', 'chart-subtitle');
+    chartSubtitle.setAttribute('y', '113');
     chartSubtitle.setAttribute('text-anchor', 'middle');
+    chartSubtitle.setAttribute('dominant-baseline', 'central');
     chartSubtitle.setAttribute('fill', 'rgba(230,232,240,0.65)');
     chartSubtitle.setAttribute('font-size', '15');
     svg.appendChild(chartSubtitle);
@@ -384,6 +384,6 @@
 
   if (languageSvg instanceof SVGElement) {
     renderPie(languageSvg, languageData, 'Language', 'distribution');
-    window.addEventListener('resize', () => renderPie(languageSvg, languageData, 'Languages', 'distribution'));
+    window.addEventListener('resize', () => renderPie(languageSvg, languageData, 'Language', 'distribution'));
   }
 })();
