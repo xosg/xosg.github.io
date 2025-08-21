@@ -1,3 +1,57 @@
+/* Accounts icon grid */
+.accounts-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+.account-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #1b2248;
+  box-shadow: 0 2px 8px rgba(76, 123, 255, 0.10);
+  transition: background 0.18s, transform 0.18s;
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+}
+.account-icon:hover, .account-icon:focus {
+  background: linear-gradient(180deg, #151c3f, #121836);
+  transform: translateY(-2px) scale(1.07);
+}
+.account-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+.account-icon[title] {
+  position: relative;
+}
+.account-icon[title]:hover::after, .account-icon[title]:focus::after {
+  content: attr(title);
+  position: absolute;
+  left: 50%;
+  bottom: calc(-1.8em - 8px);
+  transform: translateX(-50%);
+  background: #222b57;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.98em;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.97;
+}
 /* Concise Timeline with Vertical Line and Year on Left */
 .timeline-connected {
   position: relative;

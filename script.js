@@ -57,10 +57,34 @@
     }
   }
 
-  // Call loadProjects and loadTimeline on DOMContentLoaded
+  // Dynamically load and render technical accounts icons
+  async function loadAccounts() {
+    const grid = document.getElementById('accountsGrid');
+    if (!grid) return;
+    try {
+      const res = await fetch('data/accounts.json');
+      if (!res.ok) throw new Error('Failed to load accounts');
+      const accounts = await res.json();
+      grid.innerHTML = '';
+      accounts.forEach(account => {
+        const a = document.createElement('a');
+        a.className = 'account-icon';
+        a.href = account.link;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.setAttribute('aria-label', account.name);
+        a.setAttribute('title', account.name);
+        a.innerHTML = account.svg;
+        grid.appendChild(a);
+      });
+    } catch (e) {
+      grid.innerHTML = '<p style="color:var(--danger)">Failed to load accounts.</p>';
+    }
+  }
   document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
     loadTimeline();
+    loadAccounts();
   });
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
