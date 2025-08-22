@@ -1,15 +1,16 @@
-# My Online Resume — Sophisticated Version
 
-This repository hosts a lightweight, framework-free personal resume and portfolio designed for GitHub Pages. It uses semantic HTML, modern CSS, and vanilla JavaScript only.
+# My Online Resume — Modern Version
+
+This repository contains a minimalist, framework-free personal resume and portfolio for GitHub Pages. It uses semantic HTML, modern CSS, and vanilla JavaScript, with all dynamic content driven by JSON files.
 
 ## Features
 
-- Personal information hero section with avatar and quick actions
-- Developer accounts section with links to code and blogs
-- Projects section with elegant cards and technology tags
-- Certificates gallery with a responsive grid and lightbox
-- Skills distribution chart using the Canvas API (no libraries)
-- Subtle animations, hover effects, and accessible semantics
+- Emoji avatar in the hero section (no SVG file needed)
+- Technical accounts section with icons and tooltips, data-driven from HTML or JSON
+- Projects section rendered from JSON data
+- Certificates gallery with responsive grid and lightbox
+- Pie charts (skills, languages, etc.) rendered from a JSON array (fully dynamic)
+- Subtle animations, hover effects, and accessible markup
 
 ## Project Structure
 
@@ -17,47 +18,45 @@ This repository hosts a lightweight, framework-free personal resume and portfoli
 .
 ├─ index.html          # Main page
 ├─ styles.css          # Styling and responsive layout
-├─ script.js           # Interactivity (chart, reveal, lightbox)
-├─ README.md           # Original brief
-├─ README2.md          # This detailed guide
-└─ assets/
-   ├─ avatar.svg
-   └─ certificates/
-      ├─ cert1.svg
-      ├─ cert2.svg
-      ├─ cert3.svg
-      ├─ cert4.svg
-      ├─ cert5.svg
-      └─ cert6.svg
+├─ script.js           # All interactivity (charts, reveal, lightbox, dynamic sections)
+├─ data/
+│   ├─ projects.json   # Project data
+│   ├─ skills.json     # Pie chart configs (array, dynamic)
+│   ├─ timeline.json   # Timeline data
+│   └─ svg.html        # Account SVGs (if used)
+├─ assets/
+│   └─ certificates/   # Certificate images (SVG/PNG/JPG)
+├─ favicon.svg         # Site favicon
+└─ README.md           # This guide
 ```
 
 ## Customization Guide
 
-- Hero and personal info: edit names, titles, contact, and bio in `index.html`.
-- Technical accounts: replace placeholder links under the "Technical Accounts" section.
-- Projects: update project titles, descriptions, tags, and GitHub links in `index.html`.
-- Certificates: replace the placeholder SVGs under `assets/certificates/` with your real images (PNG/JPG/SVG). Filenames do not matter; just update the `src` paths in the HTML.
-- Skills chart: tweak labels, values, and colors in `script.js` under the `data` array.
+- Hero: edit name, title, and emoji in `index.html`.
+- Technical accounts: update SVGs or JSON for your links and icons.
+- Projects: edit `data/projects.json` for project cards.
+- Certificates: add images to `assets/certificates/` and update HTML if needed.
+- Pie charts: edit `data/skills.json` (array of chart configs, each with selector, title, subtitle, and data).
 - Theme: update color variables in `styles.css` under the `:root` block.
 
 ## Accessibility & Performance
 
-- Semantics: all sections use descriptive headings and lists. Images include `alt` text. Lightbox respects Escape key to close.
-- Keyboard: a skip link is provided. Lightbox close button is focusable. Consider adding focus trapping for advanced needs.
-- Motion: animations reduce automatically when `prefers-reduced-motion: reduce` is set.
-- Performance: no frameworks, optimized painting, GPU-friendly shadows, and scaled Canvas for HiDPI.
+- Semantic HTML, descriptive headings, and alt text for images/icons
+- Keyboard accessible navigation and lightbox
+- Animations respect `prefers-reduced-motion`
+- No frameworks, fast load, and optimized for GitHub Pages
 
-## Deployment to GitHub Pages
+## Deployment
 
-1. Push this repository to GitHub under a repo named `<username>.github.io` or enable Pages in repository settings.
+1. Push this repository to GitHub as `<username>.github.io` or enable Pages in repository settings.
 2. On GitHub, open Settings → Pages → Select `main` branch → `/root`.
 3. Wait a minute and visit `https://<username>.github.io/`.
 
-## Suggested Improvements
+## Tips
 
-- Add a JSON data file (still static) to drive content for projects/certificates and hydrate via `fetch()`.
-- Implement hash-based deep linking and scroll spy for the navbar.
-- Add print styles for exporting the resume as a PDF.
+- All major sections are now data-driven and easy to update via JSON.
+- Add or remove pie charts by editing the array in `skills.json`.
+- No avatar SVG file is needed—just use an emoji in the HTML.
 - Add unit tests for chart utilities using a simple test runner (still no bundlers required).
 - Add a11y focus trapping inside the lightbox and ARIA `role="dialog"`.
 
