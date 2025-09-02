@@ -74,7 +74,7 @@
 
 .timeline-entry-connected {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   align-items: flex-start;
   position: relative;
   margin-bottom: 2rem;
@@ -156,7 +156,7 @@
   .timeline-year-connected {
     /* min-width: 38px;
     font-size: 0.98rem; */
-    width: 1.5rem;
+    width: 1.3rem;
     rotate: 90deg;
     /* margin-right: 0.2rem; */
   }
@@ -164,7 +164,7 @@
 
 
   .timeline-connected::before {
-    left: 2.9rem;
+    left: 2.7rem;
   }
 }
 
@@ -570,10 +570,10 @@ img {
 .hero {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 48px 20px 32px;
-  display: grid;
+  /* padding: 48px 20px 32px; */
+  /* display: grid;
   align-items: center;
-  justify-items: center;
+  justify-items: center; */
   text-align: center;
 }
 
@@ -581,12 +581,14 @@ img {
   height: 11rem;
   line-height: 11rem;
   aspect-ratio: 1;
+  margin: auto;
   border-radius: 50%;
   transition: transform 400ms ease;
   font-size: 6rem;
-  border: #00adff54 4px solid;
+  border: #00adff80 4px solid;
   background: #00adff1a;
   border-bottom: 0;
+  text-shadow: 0 0 1rem #ff0000;
 }
 
 .avatar:hover {
@@ -594,12 +596,14 @@ img {
 }
 
 h1 {
-  margin: 16px 0 8px;
-  letter-spacing: 0.3px;
+  margin-top: -2rem;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  /* letter-spacing: 0.3px; */
 }
 
 .subtitle {
-  margin: 0 0 16px;
+  margin: 0;
   color: var(--muted);
 }
 
