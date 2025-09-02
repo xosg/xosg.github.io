@@ -15,7 +15,7 @@
           <div class="timeline-year-connected">${entry.year}</div>
           <div class="timeline-dot-connected"></div>
           <div class="timeline-content-connected">
-            <div class="timeline-title"><span class="timeline-icon">${entry.icon || ''}</span>${entry.title}</div>
+            <div class="timeline-title"><span class="timeline-icon">${entry.icon || ''} </span> ${entry.title}</div>
             <div class="timeline-desc">${entry.desc}</div>
           </div>
         `;

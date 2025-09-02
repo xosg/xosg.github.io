@@ -27,7 +27,7 @@ const server = http.createServer(async (req, res) => {
 });
 
 
-const PORT = 3002
+const PORT = 3003
 const os = require('os')
 const ip = os.networkInterfaces()['WLAN'].find(a => a.family === 'IPv4').address
 server.listen(PORT, () => console.table({
