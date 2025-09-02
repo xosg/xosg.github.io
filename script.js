@@ -80,8 +80,8 @@
       // a.setAttribute('aria-label', account.name);
 
       a.setAttribute('title', svg.getAttribute('name'));
-      svg.setAttribute('width', '40');
-      svg.setAttribute('height', '40');
+      // svg.setAttribute('width', '40');
+      // svg.setAttribute('height', '40'); 
 
       grid.appendChild(a);
     });

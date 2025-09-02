@@ -1,10 +1,8 @@
 /* Accounts icon grid */
 .accounts-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  justify-content: flex-start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+  gap: 1rem;
   margin-top: 18px;
   margin-bottom: 8px;
 }
@@ -14,7 +12,8 @@
   align-items: center;
   justify-content: center;
   width: 4rem;
-  aspect-ratio: 1;
+  height: 4rem;
+  padding: .8rem;
   border-radius: 12px;
   background: #1b2248;
   box-shadow: 0 2px 8px rgba(76, 123, 255, 0.10);
