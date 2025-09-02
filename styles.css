@@ -3,8 +3,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
   gap: 1rem;
-  margin-top: 18px;
-  margin-bottom: 8px;
+  /* margin-top: 18px;
+  margin-bottom: 8px; */
 }
 
 .account-icon {
@@ -134,7 +134,7 @@
 
 .timeline-content-connected .timeline-title .timeline-icon {
   font-size: 1.2em;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 
 .timeline-content-connected .timeline-desc {
@@ -521,14 +521,8 @@ body {
     radial-gradient(800px 600px at -100px 30%, #12234e 0%, transparent 55%) no-repeat,
     var(--bg) no-repeat;
   line-height: 1.6;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
 
 
 .site-header {
