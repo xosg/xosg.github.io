@@ -1,38 +1,38 @@
 [
     {
-    "title": "Peer Stream",
-    "desc": "Lightweight WebRTC SDK for UnrealEngine's PixelStreaming",
-    "link": "https://github.com/inveta/peer-stream",
-    "icon": "🔗"
+        "title": "Peer Stream",
+        "desc": "Lightweight WebRTC SDK for UnrealEngine's PixelStreaming",
+        "link": "https://github.com/inveta/peer-stream",
+        "icon": "🔗"
     },
     {
-    "title": "Web Games",
-    "desc": "A collection of light-weight but fancy games based on Chromium Engine",
-    "link": "https://github.com/xosg/WebGames",
-    "icon": "🎮"
+        "title": "Web Animation",
+        "desc": "A bunch of fancy animations and effects for web applications.",
+        "link": "https://xosg.github.io/animation/",
+        "icon": "✨"
     },
     {
-    "title": "3D Utility",
-    "desc": "A collection of 3D utilities for game development.",
-    "link": "https://github.com/xosg/3D-utility",
-    "icon": "🧊"
+        "title": "3D Utility",
+        "desc": "A collection of 3D utilities for game development.",
+        "link": "https://github.com/xosg/3D-utility",
+        "icon": "🧊"
     },
     {
-    "title": "Zipack",
-    "desc": "Zipack is an efficient binary serialization format which beats JSON in size.",
-    "link": "https://github.com/zipack/spec",
-    "icon": "📦"
+        "title": "Zipack",
+        "desc": "Zipack is an efficient binary serialization format which beats JSON in size.",
+        "link": "https://github.com/zipack/spec",
+        "icon": "📦"
     },
     {
-    "title": "Web Animation",
-    "desc": "A bunch of fancy animations and effects for web applications.",
-    "link": "https://xosg.github.io/animation/",
-    "icon": "✨"
+        "title": "Web Games",
+        "desc": "A collection of light-weight but fancy games based on Chromium Engine",
+        "link": "https://github.com/xosg/WebGames",
+        "icon": "🎮"
     },
     {
-    "title": "Earth Checksum",
-    "desc": "A comprehensive illustration and visualization of global historical maps.",
-    "link": "https://github.com/xosg/Earth-Summary",
-    "icon": "🌍"
+        "title": "Earth Checksum",
+        "desc": "A comprehensive illustration and visualization of global historical maps.",
+        "link": "https://github.com/xosg/Earth-Summary",
+        "icon": "🌍"
     }
 ]
