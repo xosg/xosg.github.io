@@ -7,8 +7,8 @@
     },
     {
         "title": "Web Animation",
-        "desc": "A bunch of fancy animations and effects for web applications.",
-        "link": "https://xosg.github.io/animation/",
+        "desc": "A bunch of concise but fancy WebGL animations and effects",
+        "link": "https://xosg.github.io/WebGLs/",
         "icon": "✨"
     },
     {
